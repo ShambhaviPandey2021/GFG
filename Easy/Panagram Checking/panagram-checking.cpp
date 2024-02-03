@@ -15,14 +15,15 @@ class Solution
     bool checkPangram (string s) {
         // your code here
         unordered_set<char> letters;
+ 
         for(char c : s) {
             if(isalpha(c)) {
                 letters.insert(tolower(c));
             }
         }
-
         return letters.size() == 26;
-    }    
+
+    }
 
 };
 
