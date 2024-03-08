@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/longest-common-prefix-in-an-array5129/1?page=1&category=Arrays&difficulty=Easy&sprint=94ade6723438d94ecf0c00c3937dad55&sortBy=submissions">Longest Common Prefix in an Array</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array of <strong>N</strong> strings, find the longest common prefix among all strings present in the array.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/longest-common-prefix-in-an-array5129/1?page=1&category=Arrays&difficulty=Easy&sortBy=submissions">Longest Common Prefix in an Array</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array of <strong>N</strong> strings, find the longest common prefix among all strings present in the array.</span></p>
 <p><br><span style="font-size: 18px;"><strong>Example 1:</strong></span></p>
 <pre><span style="font-size: 18px;"><strong>Input:</strong>
 N = 4
