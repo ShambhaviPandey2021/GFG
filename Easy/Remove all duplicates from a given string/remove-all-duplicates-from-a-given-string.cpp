@@ -8,19 +8,23 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:
-	string removeDuplicates(string str) {
-	    // code here
-        string s = "";
-        set<char> st;
-        for(int i = 0; i < str.size(); i++) {
-            if(st.find(str[i]) == st.end()) { 
-                st.insert(str[i]);
-                s += str[i];
+    string removeDuplicates(string str) {
+        //Code here
+        string result = "";
+        for (int i = 0; i < str.length(); i++) {
+            int j = 0;
+            for (j = 0; j < i; j++) {
+                if (str[i] == str[j]) {
+                    break;
+                }
+            }
+            if (i == j) {
+                result += str[i];
             }
         }
-        return s;
+        return result;
+    }
 
-	}
 };
 
 //{ Driver Code Starts.
