@@ -1,33 +1,25 @@
 #User function Template for python3
 
 
-
 class Solution:
-    #Function to return the level order traversal of a tree.
+    # Function to return the level order traversal of a tree.
     def levelOrder(self, root):
-        result = []
         if not root:
-            return result
-        
-        q = deque()
-        q.append(root)
-        
-        while q:
-            levelSize = len(q)
-            currentLevel = []
-            
-            for _ in range(levelSize):
-                current = q.popleft()
-                currentLevel.append(current.data)
-                
-                if current.left:
-                    q.append(current.left)
-                if current.right:
-                    q.append(current.right)
-            
-            result.extend(currentLevel)
-        
+            return []
+
+        result = []
+        queue = deque([root])
+
+        while queue:
+            node = queue.popleft()
+            result.append(node.data)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
         return result
+
 
 #{ 
  # Driver Code Starts
