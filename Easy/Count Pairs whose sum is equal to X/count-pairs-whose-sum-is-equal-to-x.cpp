@@ -52,28 +52,28 @@ class Solution{
     // your task is to complete this function
     int countPairs(struct Node* head1, struct Node* head2, int x) {
         // Code here
-        unordered_set<int>seen;
-        int count = 0;
+        unordered_set<int> values_set;
+
         struct Node* current = head1;
-        while(current){
-            seen.insert(current->data);
+        while (current) {
+            values_set.insert(current->data);
             current = current->next;
-            
         }
-        
+
+        int count = 0;
+
         current = head2;
-        while(current){
-            int complement  = x - current->data;
-            if(seen.find(complement)!=seen.end()){
+        while (current) {
+            int complement = x - current->data;
+            if (values_set.find(complement) != values_set.end()) {
                 count++;
             }
-            current =  current->next;
-            
+            current = current->next;
         }
+        
         return count;
-        
-        
     }
+    
 };
 
 //{ Driver Code Starts.
