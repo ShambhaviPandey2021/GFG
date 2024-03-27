@@ -71,54 +71,55 @@ class GFG {
 
 // } Driver Code Ends
 
-class Solution 
-{
-     public static void dangeralongside(boolean[][] v,int i,int j,int n,int m) 
-     {
-         v[i][j]=true;
-         if(i+1<n) v[i+1][j]=true;
-         if(i-1>=0) v[i-1][j]=true;
-         if(j+1<m) v[i][j+1]=true;
-         if(j-1>=0) v[i][j-1]=true;
-     }
-    public static int findShortestPath(int[][] mat) 
+class Solution {
+    public static int solve(int[][] mat, int i, int j,boolean[][] vis,int count)
     {
-        int ans=Integer.MAX_VALUE;
-        int n=mat.length;
-        int m=mat[0].length;
-        boolean v[][]=new boolean[n][m];
-        for(int i=0;i<n;i++)
+        
+        if(i < 0 || i >= mat.length || j < 0 || j > mat[0].length || mat[i][j] == -1 || mat[i][j] == 0 || vis[i][j])
         {
-            for(int j=0;j<m;j++)
+            return Integer.MAX_VALUE;
+        }
+        if(j == mat[0].length - 1) return count;
+        vis[i][j] = true;
+        int n1 = solve(mat,i+1,j,vis,count+1);
+        int n2 = solve(mat,i-1,j,vis,count+1);
+        int n3 = solve(mat,i,j+1,vis,count+1);
+        int n4 = solve(mat,i,j+1,vis,count+1);
+        vis[i][j] = false;
+        return Math.min(n1,Math.min(n2,Math.min(n3,n4)));
+    }
+    public static int findShortestPath(int[][] mat) {
+        for(int i = 0 ; i < mat.length ; i++)
+        {
+            for(int j = 0 ; j < mat[0].length ; j++)
             {
-                if(mat[i][j]==0)
-                dangeralongside(v,i,j,n,m);
+                if(i > 0 && mat[i-1][j] == 0)
+                {
+                    mat[i][j] = -1;
+                }
+                if(j > 0 && mat[i][j-1] == 0)
+                {
+                    mat[i][j] = -1;
+                }
+                if(i < mat.length - 1 && mat[i+1][j] == 0)
+                {
+                    mat[i][j] = -1;
+                }
+                if(j < mat[0].length - 1 && mat[i][j+1] == 0)
+                {
+                    mat[i][j] = -1;
+                }
             }
         }
-        for(int i=0;i<n;i++)
+        int ans = Integer.MAX_VALUE;
+        boolean[][] vis = new boolean[mat.length][mat[0].length];
+        for(int i = 0 ; i < mat.length ; i++)
         {
-           int min=0;
-           if(mat[i][0]!=0&&v[i][0]!=true)
-           {
-               min=fps(mat,v,i+1,0,n,m,min);
-               ans=Math.min(min,ans);  
-           }
-        }if(ans==Integer.MAX_VALUE) return -1;
-        return ans;
-    }
-     public static int fps(int[][] mat,boolean[][] v,int i,int j,int n,int m,int ans) 
-    {
-        if(j==m) return ans++;
-        if(i<0||i>=n||j<0||j>m||v[i][j]) return Integer.MAX_VALUE;
-         v[i][j]=true;
-         ans++;
-        int r=fps(mat,v,i,j+1,n,m,ans);
-        int l=fps(mat,v,i,j-1,n,m,ans);
-        int d=fps(mat,v,i+1,j,n,m,ans);
-        int u=fps(mat,v,i-1,j,n,m,ans);
-        v[i][j]=false;
-        r=Math.min(r,l);
-        l=Math.min(u,d);
-        return ans=Math.min(r,l);
+            if(mat[i][0] == 1)
+            ans = Math.min(ans,solve(mat,i,0,vis,0));
+        }
+        if(ans == Integer.MAX_VALUE) return -1;
+        else return ans+1;
     }
 }
+
