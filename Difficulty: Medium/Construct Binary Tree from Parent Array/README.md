@@ -17,7 +17,7 @@ will have a structure like
 <pre><strong><span style="font-size: 18px;">Input: </span></strong><span style="font-size: 18px;">parent[] = [2, 0, -1]
 <strong>Output: </strong>2 0 1<strong>
 Explanation: </strong>the tree generated will
-have a sturcture like
+have a structure like
 &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;2
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;/&nbsp;&nbsp; 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  0&nbsp;  &nbsp;  
