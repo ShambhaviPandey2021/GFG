@@ -1,12 +1,14 @@
 #User function Template for python3
-
+import heapq
 
 class Solution:
 
     def kthSmallest(self, arr,k):
-        arr.sort()
-   
-        return arr[k-1]
+        heapq.heapify(arr)
+        kth_min = None
+        for _ in range(k):
+            kth_min = heapq.heappop(arr)
+        return kth_min
         
 
 
