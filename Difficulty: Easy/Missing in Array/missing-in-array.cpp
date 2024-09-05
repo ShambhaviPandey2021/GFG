@@ -14,14 +14,16 @@ class Solution {
     int missingNumber(int n, vector<int>& arr) {
 
         // Your code goes here
-        int expected = (n * (n + 1)/2);
-        int res = 0;
-        for(auto num : arr){
-            res += num;
+        int expected = n*(n+1)/2;
+        int actual = 0;
+        for(int num: arr){
+            actual += num;
+            
         }
-        return expected - res;
+        return expected-actual;
     }
 };
+
 
 //{ Driver Code Starts.
 
