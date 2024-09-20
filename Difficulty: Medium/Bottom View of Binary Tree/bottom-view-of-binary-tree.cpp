@@ -95,28 +95,42 @@ Node* buildTree(string str)
 
 class Solution {
   public:
-    void solve(Node *root,int x,int y,map<int,pair<int,int>>& mp){
-        //base case
-        if(root==NULL){
-            return;
-        }
-        if(mp.find(x) == mp.end() || mp[x].first<=y)
-        mp[x]={y,root->data};
-        solve(root->left,x-1,y+1,mp);
-        solve(root->right,x+1,y+1,mp);
-    }
     vector <int> bottomView(Node *root) {
-        map<int,pair<int,int>> mp;
-        solve(root,0,0,mp);
+        // Your Code Here
         vector<int> ans;
-        for(auto it:mp){
-            ans.push_back(it.second.second);
+        
+        if(root == NULL) 
+            return ans;
+        
+        map<int, int> mp;
+        queue<pair<Node*, int>> q;
+        q.push({root, 0});
+        
+        while(!q.empty()){
+            auto it = q.front();
+            q.pop();
+            
+            Node* node = it.first;
+            int line = it.second;
+            mp[line] = node->data;
+
+            
+            if(node->left != NULL) {
+                q.push({node->left, line - 1});
+            }
+            
+            if(node->right != NULL) {
+                q.push({node->right, line + 1});
+            }
         }
+        
+        for(auto it : mp) {
+            ans.push_back(it.second);
+        }
+        
         return ans;
     }
 };
-
-
 
 //{ Driver Code Starts.
 
