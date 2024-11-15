@@ -1,26 +1,16 @@
 #User function Template for python3
 class Solution:
-    def print2largest(self, arr):
+    def getSecondLargest(self, arr):
         # Code Here
-        if len(arr) < 2:
-            return -1
-            
-        max_1 = float('-inf')
-        sec_max = float('-inf')
-        
-        for i in arr:
-            if i > max_1:
-                sec_max = max_1
-                max_1 = i
-            elif i > sec_max and i < max_1:
-                sec_max = i
-        
-        if sec_max == float('-inf'):
-            return -1
-        return sec_max
-        
-            
-
+        first_max = -1
+        second_max = -1
+        for num in arr:
+            if num > first_max:
+                second_max = first_max
+                first_max = num
+            elif num > second_max and num != first_max:
+                second_max = num
+        return second_max
 
 #{ 
  # Driver Code Starts
@@ -31,7 +21,7 @@ if __name__ == "__main__":
     for _ in range(t):
         arr = list(map(int, input().split()))
         ob = Solution()
-        ans = ob.print2largest(arr)
+        ans = ob.getSecondLargest(arr)
         print(ans)
-
+        print("~")
 # } Driver Code Ends
