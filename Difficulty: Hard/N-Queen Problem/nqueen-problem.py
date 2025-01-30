@@ -1,56 +1,36 @@
 #User function Template for python3
 
 class Solution:
+    def solve(self, colo, n, ans, sol, col, ldiag, rdiag):
+        for i in range(n):
+            if colo == n:
+                ans.append(sol[:])  #storing  the current solution
+                return
+
+            if not col[i] and not ldiag[colo - i + n - 1] and not rdiag[i + colo]:
+                sol.append(i + 1)  # Placing our queen
+                col[i] = True
+                ldiag[colo - i + n - 1] = True
+                rdiag[i + colo] = True
+
+                self.solve(colo + 1, n, ans, sol, col, ldiag, rdiag) 
+
+                sol.pop()  # Backtrack 
+                col[i] = False
+                ldiag[colo - i + n - 1] = False
+                rdiag[i + colo] = False
+
     def nQueen(self, n):
         # code here
-        board = [[0 for _ in range(n)] for _ in range(n)]
-        results = []
-        self.solveNQueens(board, 0, n, results)
-        return results
-        
-        
-    def isSafe(self,board,row,col,n):
-        
-        # checking the column
-        for i in range(row):
-            if board[i][col] == 1:
-                return False
-                
-        #checking for diagonal left
-        for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
-            if board[i][j] == 1:
-                return False
-        
-        #checking the diagonal right
-        for i, j in zip(range(row, -1, -1), range(col, n)):
-            if board[i][j] == 1:
-                return False
+        col = [False] * n
+        ldiag = [False] * (2 * n - 1)
+        rdiag = [False] * (2 * n - 1)
+        ans = []
+        sol = []
+        self.solve(0, n, ans, sol, col, ldiag, rdiag)
+        return ans
 
-        return True
-    
-    def solveNQueens(self, board, row, n, results):
-        if row >= n:
-            
-            result = []
-            for i in range(n):
-                for j in range(n):
-                    if board[i][j] == 1:
-                        result.append(j + 1)  
-            results.append(result)
-            return
-        
-        for col in range(n):
-            if self.isSafe(board, row, col, n):
-           
-                board[row][col] = 1
-              
-                self.solveNQueens(board, row + 1, n, results)
-           
-                board[row][col] = 0
-                
-        
-            
-            
+
 
 
 #{ 
@@ -61,17 +41,20 @@ if __name__ == '__main__':
     t = int(input())
     for _ in range(t):
         n = int(input())
-        
+
         ob = Solution()
         ans = ob.nQueen(n)
-        if(len(ans) == 0):
+        if (len(ans) == 0):
             print("-1")
         else:
+            ans.sort()
             for i in range(len(ans)):
-                print("[",end="")
+                print("[", end="")
                 for j in range(len(ans[i])):
-                    print(ans[i][j],end = " ")
-                print("]",end = " ")
+                    print(ans[i][j], end=" ")
+                print("]", end=" ")
             print()
-                
+
+        print("~")
+
 # } Driver Code Ends
