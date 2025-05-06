@@ -3,8 +3,13 @@ from typing import List
 
 
 class Solution:
-    def largest(self, n : int, arr : List[int]) -> int:
+    def largest(self, arr):
         # code here
+        maxi = float('-inf')
+        for i in range(len(arr)):
+            if arr[i] > maxi:
+                maxi = arr[i]
+        return maxi
         
 
 
@@ -30,13 +35,12 @@ if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
 
-        n = int(input())
-
-        arr = IntArray().Input(n)
+        arr = list(map(int, input().split()))
 
         obj = Solution()
-        res = obj.largest(n, arr)
+        res = obj.largest(arr)
 
         print(res)
+        print("~")
 
 # } Driver Code Ends
